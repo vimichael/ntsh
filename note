@@ -1,0 +1,63 @@
+#!/bin/bash
+
+template="---
+title: {{title}}
+date: {{date}}
+tags:
+{{tags}}
+---
+
+# {{title}}"
+
+date="$(date +%F)"
+title_done=false
+title=""
+tags=""
+loc="$NOTE_DIR"
+
+process_arg() {
+  case "$1" in
+    --tags|-t)
+      title_done=true
+      ;;
+    *)
+      if [[ "$title_done" = true ]]; then
+        tags+="  - $1\n" 
+      else
+        title+="-$1"
+      fi
+      ;;
+  esac
+}
+
+if [[ -z "$1" || -z "$2" ]]; then
+  echo "must at least provide a location and title"
+  exit 1
+fi
+
+if [[ "$1" == "." ]]; then
+  loc="."
+else
+  loc+="/$1"
+fi
+shift
+
+# iter over args
+for arg in "$@"; do
+  process_arg "$arg"
+done
+
+title="$(echo "$title" | sed -e 's/^.//')"
+tags="$(echo "$tags" | sed -e "s/..$//")"
+
+content="$(echo "$template" | sed -e "s/{{title}}/$title/" -e "s/{{date}}/$date/g" -e "s/{{tags}}/$tags/g")"
+
+dest="$loc/$title.md"
+echo "$loc"
+echo "$dest"
+echo "$content" > "$dest"
+# create journal if not exists
+if [[ ! -e "$JOURNAL_DIR/journal-$date.md" ]]; then
+  journal
+fi
+echo "[[$title]]" >> "$JOURNAL_DIR/journal-$date.md"

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+date="$(date +%F)"
+filename="$JOURNAL_DIR/journal-$date.md"
+
+TEMPLATE="---
+title: journal-$date
+date: $date
+tags:
+  - dailies
+---
+
+# journal-$date
+"
+
+if [[ ! -e "$filename" ]]; then
+  echo "$TEMPLATE" > "$filename"
+fi
+
+echo "$filename"
