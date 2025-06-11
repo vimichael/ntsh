@@ -5,9 +5,7 @@
 handle_help "$1" "query notes for tags, keywords, titles"
 
 tags() {
-
   tags="$(echo "$1" | sed -E "s/\|/\|- /g")"
-  echo "tags: $tags"
 
   entries="$(find . \( -path "./.git" -o -path "./.obsidian" -o -path "./archive" \) -prune -o -type f -name "*.md" -print0 | xargs -0 grep -Eli "\- $tags")"
   echo "$entries"
