@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 date="$(date +%F)"
 filename="$JOURNAL_DIR/journal-$date.md"

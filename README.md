@@ -20,6 +20,8 @@ note . this is a title -t tag1 tag2 tag3
 journal
 # remove a note and any references to it (replace with links to redacted note)
 remove this-is-a-title
+# rename note
+nr old-title new-title
 ```
 
 ## license
