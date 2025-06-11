@@ -1,11 +1,8 @@
 #!/bin/env bash
 
-case "$1" in
-  -h|--help|help)
-    echo "rename a note and all its references"
-    exit 0
-    ;;
-esac
+[ ! -v NTSH_DIR ] && source "utils.sh" || source "$NTSH_DIR/utils.sh"
+
+handle_help "$1" "rename a note and all its references"
 
 if [[ -z "$1" || -z "$2" ]]; then
   echo "please provide a target note name and new name"

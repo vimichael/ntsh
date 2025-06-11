@@ -22,6 +22,10 @@ journal
 remove this-is-a-title
 # rename note
 nr old-title new-title
+# query
+nq title "some-title"
+nq tags "tag1|tag2|tag3"
+nq keyword "hello world!"
 ```
 
 ## license
