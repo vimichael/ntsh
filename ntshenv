@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 
 export NOTE_DIR="$HOME/notes"
 export JOURNAL_DIR="$NOTE_DIR/dailies"

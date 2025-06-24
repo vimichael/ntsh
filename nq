@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 
 [ ! -v NTSH_DIR ] && source "utils.sh" || source "$NTSH_DIR/utils.sh"
 
